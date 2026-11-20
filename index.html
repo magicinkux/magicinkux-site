@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<base href="/">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ji Park Magic Ink</title>
+<meta name="description" content="Ji Park, UX designer in New York. Selected work, experience and contact.">
+<style>
+:root{color-scheme:dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<style>
+/* Layout: a 12-column Swiss grid like the deck; every view is a "slide" with a small metadata row on top, regular-weight Helvetica headlines, and numbered contents lists */
+:root{
+  --bg:#000000; --fg:#FFFFFF; --dim:#8A8A8A; --faint:#4A4A4A; --rule:#262626;
+  --f:"Helvetica Neue", "HelveticaNeue", "Helvetica Neue LT Std", Helvetica, Arial, sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{background:var(--bg);color:var(--fg)}
+body{font-family:var(--f);font-size:14px;line-height:1.4;-webkit-font-smoothing:antialiased;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left}
+:focus-visible{outline:1px solid var(--fg);outline-offset:4px}
+
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.slide{position:relative;z-index:1;max-width:1400px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding-block:20px 28px}
+.g{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px}
+
+/* metadata row */
+.meta{font-size:10px;line-height:1.35;color:var(--fg);align-items:start}
+.meta .c1{grid-column:1/3;font-weight:700;letter-spacing:.01em}
+.meta .c2{grid-column:3/5}
+.meta .c3{grid-column:5/9}
+.meta .c4{grid-column:9/12}
+.meta .c5{grid-column:12/13;text-align:right;font-variant-numeric:tabular-nums}
+.meta a:hover{color:var(--dim)}
+.meta nav{display:flex;flex-direction:column}
+.meta nav a[aria-current="page"]::before{content:"— "}
+
+.body{flex:none;padding-top:clamp(64px,12vh,140px)}
+.col-l{grid-column:3/5;font-size:10px;color:var(--fg);padding-top:6px}
+.col-main{grid-column:5/13}
+
+h1,h2{font-weight:400;letter-spacing:-.015em;margin:0;text-wrap:balance}
+h1{font-size:clamp(36px,4.2vw,58px);line-height:1.05}
+h2{font-size:clamp(26px,2.6vw,36px);line-height:1.12}
+.dash{display:block;width:16px;height:1px;background:var(--fg);margin:28px 0 10px}
+.small{font-size:10px;line-height:1.5}
+
+/* contents list */
+.toc{list-style:none;margin:0;padding:0;font-size:clamp(16px,1.35vw,19px);line-height:1.3}
+.toc li .rw{display:grid;grid-template-columns:2.2em minmax(0,1fr) 7em 3.5em;gap:12px;width:100%;padding:2px 0}
+.toc li .rw:hover .t{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.toc .n,.toc .y{font-variant-numeric:tabular-nums}
+.toc .k{color:inherit}
+.toc.archive{color:var(--faint);margin-top:40px}
+.toc.archive li .rw:hover{color:var(--dim)}
+.toc-label{font-size:10px;margin-bottom:12px}
+.toc.archive + .x{display:none}
+
+/* case */
+.ctx{list-style:none;margin:0;padding:0;font-size:clamp(15px,1.25vw,18px);line-height:1.25}
+.cover{grid-column:1/13;width:100%;max-width:100%;height:auto;display:block;margin-top:72px;background:#141414}
+.cover.ph{aspect-ratio:16/9}
+.ph{display:flex;align-items:flex-end;padding:14px;background:#141414;aspect-ratio:16/9}
+.ph span{font-size:10px;color:var(--dim)}
+.gallery{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;margin-top:20px}
+.gimg{width:100%;max-width:100%;height:auto;display:block;background:#141414}
+.dec{list-style:none;margin:0;padding:0;font-size:clamp(15px,1.25vw,18px);line-height:1.35;max-width:760px}
+.dec li{display:grid;grid-template-columns:2.4em minmax(0,1fr);gap:12px;padding:10px 0;border-top:1px solid var(--rule)}
+.dec li span:first-child{font-variant-numeric:tabular-nums;color:var(--dim)}
+.pdf{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.cols{margin-top:72px;row-gap:32px}
+.cols section{min-width:0}
+.cols h3{font-size:clamp(18px,1.5vw,22px);font-weight:400;margin:0 0 12px;line-height:1.15}
+.cols p{margin:0;font-size:12px;line-height:1.5;max-width:36ch}
+.cols .s1{grid-column:5/8}.cols .s2{grid-column:8/11}.cols .s3{grid-column:11/13}
+.stats{margin-top:96px;text-align:center}
+.stats .st{grid-column:span 2;min-width:0}
+.stats .v{font-size:clamp(40px,4.4vw,64px);line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stats .l{font-size:15px;font-weight:700;line-height:1.3;color:var(--dim);margin-top:8px}
+.stats .dot{width:10px;height:10px;border-radius:50%;background:var(--fg);margin:22px auto 0}
+.stats .st:first-child{grid-column:5/7}
+
+.foot{margin-top:auto;padding-top:96px;font-size:10px;align-items:end}
+.foot .c1{grid-column:1/3}
+.foot .c3{grid-column:5/9;display:flex;gap:28px}
+.foot .c5{grid-column:9/13;text-align:right;color:var(--dim)}
+.foot button:hover{color:var(--dim)}
+
+/* about / contact */
+.facts{list-style:none;margin:0;padding:0;font-size:clamp(15px,1.25vw,18px);line-height:1.3}
+.facts li{display:grid;grid-template-columns:8em minmax(0,1fr);gap:12px}
+.facts li span:first-child{font-variant-numeric:tabular-nums}
+.prose{font-size:12px;line-height:1.55;max-width:38ch;margin:0}
+.mail{font-size:clamp(26px,3.4vw,48px);letter-spacing:-.015em;user-select:all;word-break:break-all}
+.facts.links li{display:block}
+.facts.links a:hover{color:var(--dim)}
+.em{display:flex;flex-wrap:wrap;align-items:baseline;gap:16px;min-width:0}
+.em #email{word-break:break-all}
+.copy{color:var(--dim)}
+.copy:hover{color:var(--fg)}
+
+/* left-column navigation, pinned while scrolling */
+.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 20px);height:0;z-index:3}
+.side .in{grid-column:1/3;display:flex;flex-direction:column;gap:18px}
+.side .nm{font-size:10px;font-weight:700;line-height:1.35}
+.side nav{display:flex;flex-direction:column;gap:4px;font-size:16px;line-height:1.25}
+.side nav a{color:var(--dim)}
+.side nav a[aria-current="page"]{color:var(--fg)}
+.side nav a[aria-current="page"]::before{content:"\2014\00a0"}
+.side nav a:hover{color:var(--fg)}
+/* rotating headline */
+#rotator .fixed{display:block;color:var(--dim)}
+#rotator .hls{display:grid;max-width:15em}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hl{grid-area:1/1;opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.hl.on{opacity:1;transform:none;transition-delay:.2s}
+.hl.out{opacity:0;transform:translateY(-14px);transition-delay:0s}
+.side .who{display:flex;align-items:center;gap:2px}
+.dl{display:inline-block;width:.75em;height:.75em;margin-left:.3em;vertical-align:-.02em}
+.back{display:none}
+/* viewed projects */
+.toc li .rw.seen .t{text-decoration:line-through;text-decoration-thickness:1px;text-decoration-color:var(--fg)}
+.toc li .rw.seen:hover .t{text-decoration:line-through;text-decoration-color:var(--fg)}
+/* motion */
+.live{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--fg);margin-right:6px;vertical-align:1px}
+.foot a,.foot button{background:linear-gradient(var(--fg),var(--fg)) 0 100%/0 1px no-repeat;transition:background-size .35s ease}
+.foot a:hover,.foot button:hover{color:var(--fg);background-size:100% 1px}
+.toc li .rw{transition:transform .4s cubic-bezier(.2,.7,.2,1),opacity .3s ease,color .3s ease}
+.toc:hover li .rw{opacity:.4}
+.toc li .rw:hover{opacity:1;transform:translateX(10px);color:var(--fg)}
+.toc.archive li .rw:hover{color:var(--fg)}
+@media (prefers-reduced-motion:no-preference){
+  #app>*{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+  #app>*:nth-child(2){animation-delay:.08s}#app>*:nth-child(3){animation-delay:.16s}#app>*:nth-child(4){animation-delay:.24s}#app>*:nth-child(5){animation-delay:.32s}#app>*:nth-child(6){animation-delay:.4s}#app>*:nth-child(7){animation-delay:.48s}#app>*:nth-child(8){animation-delay:.56s}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .live{animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
+  .stats .dot{animation:beat 3.2s ease-in-out infinite}
+  @keyframes beat{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.55}}
+}
+
+@media (max-width:860px){
+  .g{grid-template-columns:repeat(4,minmax(0,1fr));column-gap:12px}
+  .side{position:sticky;top:0;height:auto;z-index:5;margin:-20px calc(-1 * max(16px, env(safe-area-inset-right, 0px))) 12px calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+    padding:calc(14px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) 14px max(16px, env(safe-area-inset-left, 0px));
+    background:rgba(0,0,0,.82);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+  body::before{display:none}
+  .back{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin:-14px 0 -14px -14px;color:var(--fg)}
+  .side .in{grid-column:1/5;flex-direction:row;justify-content:space-between;align-items:baseline}
+  .side nav{flex-direction:row;gap:16px;font-size:14px}
+  .meta{display:none}
+  .meta .c1{grid-column:1/3}.meta .c2{grid-column:3/5;text-align:right}
+  .meta .c3,.meta .c4{display:none}.meta .c5{display:none}
+  .meta nav{flex-direction:row;justify-content:flex-end;gap:14px}
+  .meta nav a[aria-current="page"]::before{content:""}
+  .meta nav a[aria-current="page"]{text-decoration:underline;text-underline-offset:2px}
+  .col-l{grid-column:1/5;padding:0 0 12px}
+  .col-main{grid-column:1/5}
+  .toc li .rw{grid-template-columns:2em minmax(0,1fr) 3em}
+  .toc .k{display:none}
+  .cover{grid-column:1/5;margin-top:48px}
+  .gallery{grid-template-columns:minmax(0,1fr);gap:12px;margin-top:12px}
+  .cols .s1,.cols .s2,.cols .s3{grid-column:1/5}
+  .stats .st,.stats .st:first-child{grid-column:span 2}
+  .stats{row-gap:40px}
+  .foot .c1{grid-column:1/3}.foot .c3{grid-column:1/5;order:3;margin-top:12px}.foot .c5{grid-column:3/5}
+  .meta,.col-l,.small,.toc-label,.foot,.cover span{font-size:11px}
+  .cols p,.prose{font-size:14px}
+  .two{grid-template-columns:minmax(0,1fr)!important}
+  .hint{display:none}
+}
+.side nav a,.side .nm{white-space:nowrap}
+@media (max-width:380px){.side nav{gap:10px;font-size:13px}}
+@media (max-width:340px){.side nav{gap:8px;font-size:12px}.side .back{width:36px;margin-left:-10px}}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,8px);z-index:20;display:flex;align-items:center;gap:8px;padding:10px 14px;background:#111;border:1px solid var(--rule);color:var(--fg);font-size:12px;line-height:1.3;opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s cubic-bezier(.2,.7,.2,1);white-space:nowrap}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast .ok{color:var(--dim)}
+@media (prefers-reduced-motion:reduce){.toast{transition:none}}
+/* hover: breathing opacity, after andrewchee.com */
+.meta a:hover,.facts.links a:hover,.foot a:hover,.foot button:hover{color:inherit}
+.foot a,.foot button{background:none!important}
+.side nav a:hover{color:var(--dim)}
+.side nav a[aria-current="page"]:hover{color:var(--fg)}
+.toc:hover li .rw{opacity:1}
+.toc li .rw:hover{transform:none;color:var(--fg)}
+.toc.archive li .rw:hover{color:var(--faint)}
+.toc li .rw:hover .t{text-decoration:none}
+@keyframes breath{0%,100%{opacity:1}50%{opacity:.57}}
+a:hover,button:hover{cursor:progress!important}
+@media (prefers-reduced-motion:no-preference){a:hover,a:focus-visible,button:hover,button:focus-visible{animation:breath 1.5s ease-in-out infinite!important}}
+@media (prefers-reduced-motion:reduce){a:hover,button:hover{opacity:.57}}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div class="slide" id="app"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"><span>Resume downloaded</span><span class="ok">JiPark_Resume.pdf</span></div>
+
+<script>
+/* ===== Edit your content here ===== */
+const ME = { name:"Ji Park", tag:"UX Design", loc:"NY", email:"jpark630@gmail.com",
+  linkedin:"https://www.linkedin.com/in/magicinkux", old:"https://magicinkux.com/" };
+
+/* Images live in images/<project>/<project>-01.jpg …; PDFs in pdfs/ */
+const imgs = (slug, n) => Array.from({length:n}, (_,k) => `images/${slug}/${slug}-${String(k+1).padStart(2,"0")}.jpg`);
+const WORK = [
+  {slug:"designos", title:"DesignOS", type:"AI system", year:"2026",
+   ctx:["Concept case study","Product designer, concept to working prototype","Designing for AI","Test brand: LUMA, a fictional indoor air startup","Brand as interface","Prototyping in Figma and Claude"],
+   lede:"A brand system that AI agents design with, so anyone can build great design.",
+   problem:"Every deck, web page and banner goes to the design team as a request and waits in line. Designers turn into a service desk. Design systems help, but guidelines describe the work. They can't do it.",
+   goal:"Give everyone in a company autonomy to self-serve good design, while designers keep the taste and own every decision.",
+   process:"I borrowed from three city builders: build infrastructure like Moses, govern it like Jacobs, write the language like Alexander. Then I created LUMA, a fictional brand, to put the system through a real launch.",
+   decisions:["Designers write the skills and product facts. The AI only builds inside them.", "Every piece of work gets a volume from 1 to 5. Quiet work ships on its own; loud work gets a designer's review.", "The AI checks every draft for accessibility, system use, voice, product truth and recognition before anyone sees it.", "Requests arrive where work already starts, in Slack, Notion and Claude. There is no new tool to learn.", "The AI makes several options, the requester picks one, and a designer approves anything loud.", "Every step shows up in a visible trace, and every draft stays editable.", "For LUMA, I designed the brand as an interface: a solid L that frames a window of mountain air and changes with the time of day and the air quality."],
+   result:"A working prototype that shows what the AI is doing: incoming requests, three draft options with checks, and the system trace, plus a full LUMA identity and the campaign the AI built from it. Goals for a first pilot, not results: 60% of work self-served, 10 minutes or less to an editable draft, and 70% of designer time on new ideas.",
+   learn:"I don't design every screen. I design the system that helps everyone design well.",
+   images:imgs("designos", 14),
+   pdf:"pdfs/designos-case-study.pdf", pdfLabel:"Full deck (PDF)"},
+  {slug:"chase-core-card", title:"Chase Core Card MVP", type:"App", year:"2025", animate:true,
+   ctx:["JPMorgan Chase & Co.","Card and Channels DCE","Cross-functional product, design and marketing quads","Jobs-to-be-done research","Information architecture audit","Prototyping and testing"],
+   goal:"Create one product framework that brings key tasks forward, so customers can manage their card easily, get more value from it, and solve issues themselves.",
+   decisions:["Combined the Overview Dashboard and Card Account Dashboard into a single surface.", "Made monitoring the account the anchor, with current balance at the top.", "Put the actions for that primary job right on the surface.", "Used quick links as the doorway to key self-service tools.", "Placed benefit tiles between transactions to reinforce card value and open paths to other Chase products.", "Kept only critical content and made the trade-offs deliberately."],
+   lede:"Bring a single-card customer's most important jobs to the front of the app.",
+   problem:"Single-card customers struggled to find the tasks they needed most. The old Overview Dashboard took several taps to reach account details, and card benefits were hard to find. In 2024, mobile satisfaction for card-only customers trailed the overall app by 9 points.",
+   process:"Workshops and research surfaced 15 core card jobs, and a jobs-to-be-done framework moved the team from features to customer needs. We audited the information architecture, then shipped in stacked, tested releases with cross-functional quads and single-owner decisions.",
+   result:"One surface replaced the Overview Dashboard and the Card Account Dashboard, anchored on monitoring the account, with quick links to self-service and benefit tiles in the transaction feed. It launched to about 130,000 Freedom and Sapphire customers and has since expanded.",
+   stats:[["+67%","Benefits access"],["+$4M","Card NPV"],["+10%","Self-service"],["+4%","Customer satisfaction"]],
+   learn:"Card and Channels came together with a shared purpose, trust and collaboration.",
+   images:imgs("chase-core-card", 4),
+   pdf:"pdfs/chase-core-card-case-study.pdf", pdfLabel:"Full case study (PDF)"},
+  {slug:"chase-wallet", title:"Chase OVD Wallet Evolution", type:"App", year:"2024",
+   ctx:["JPMorgan Chase & Co.","UX Design Lead","Digital Products & Channels","Jobs-to-be-done research","Affinity mapping","Design patterns and layouts","Qualitative and quantitative testing"],
+   goal:"Make it easy to monitor and service accounts at a glance, tailor the wallet to each customer segment, and support money management beyond balances.",
+   decisions:["Made the account blade the standard building block: name, balance, primary action and quick actions.", "Gave accounts with a physical card a branded treatment.", "Limited quick actions to a short, ordered set: security first, then frequent servicing, then secondary tasks.", "Designed next best actions with default, neutral and alert states as the next step for account tiles.", "Built three layouts: Simple for three or fewer accounts, Stacked for five or more, and Streamlined with tabs for complex cases."],
+   lede:"One wallet that works for two accounts or twenty.",
+   problem:"The wallet is a customer's financial hub, but core jobs were hard: customers struggled to act on their accounts and find transactions. One layout served every segment, and money management stopped at balances.",
+   process:"We pulled ten wallet jobs-to-be-done from research and strategy, then affinity-mapped them into three core jobs: monitor balances and stay in control, use clear tools and visual signals, and find critical information and act on it.",
+   result:"A standard account blade shows name, balance, a primary action and a short list of quick actions, with branded cards for physical plastic. Three layouts scale with the customer: Simple, Stacked and Streamlined.",
+   stats:[["62%","Preferred horizontal tabs in testing"]],
+   learn:"Shared alignment on the problem comes first. It gives every later debate about direction, trade-offs and priorities a clear reference point.",
+   images:imgs("chase-wallet", 5),
+   pdf:"pdfs/chase-wallet-case-study.pdf", pdfLabel:"Full case study (PDF)"},
+  {slug:"mercedes-inventory", title:"Mercedes-Benz Inventory", type:"Web", year:"2021",
+   ctx:["Mercedes-Benz USA, mbusa.com","UX Lead, Publicis Sapient","Team of 25","Jun 2020 — Feb 2021","Jobs-to-be-done and consumption chain","Prototyping and user testing"],
+   goal:"Inspire and guide shoppers to their dream vehicle, and turn inventory from a lead-generation tool into a connected, personal experience.",
+   decisions:["Created a Discover Inventory landing page for discovering and learning the lineup.", "Moved filters into a sidebar so shoppers can scan many at once and see what is applied.", "Made filtering live, so results update with every choice. Shoppers averaged three filters per session.", "Ranked filters by real usage from analytics and added new ones.", "Showed specs tailored to each body style.", "Added shopping content cards so shoppers keep browsing instead of leaving to research.", "Personalized results on first and return visits, and added a Best Match sort."],
+   lede:"Help shoppers discover and learn the lineup in one place.",
+   problem:"Shoppers felt intimidated by the lineup. They had to scroll through every vehicle to find one feature, couldn't tell whether a car had something like third-row seating, and doubted that personalization would help them.",
+   process:"An inventory audit, analytics, surveys and third-party research fed jobs-to-be-done and consumption-chain mapping. We concepted, prioritized features, then sketched, prototyped and tested with shoppers.",
+   result:"A Discover Inventory landing page, sidebar and live filtering ranked by real usage, specs tailored to body style, shopping content cards, personalization models for first and return visits, and a Best Match sort.",
+   stats:[["+583","New leads in the first month"],["+63%","Conversion to leads"],["20.8%","Bounce rate"]],
+   learn:"Breaking jobs into steps, and looking past a single job, shows the whole shopper journey.",
+   images:imgs("mercedes-inventory", 9),
+   pdf:"pdfs/mercedes-inventory-case-study.pdf", pdfLabel:"Full case study (PDF)"},
+  {slug:"mercedes-build-your-own", title:"Mercedes-Benz Build Your Own", type:"Web", year:"2020",
+   ctx:["Mercedes-Benz USA, mbusa.com","UX Lead, Publicis Sapient","Team of 17","Feb — Jun 2020","Research and jobs-to-be-done","Prototyping and user testing"],
+   goal:"Simplify the configurator so shoppers make confident choices, and guide them on to browse new inventory.",
+   decisions:["Simplified the categories so shoppers move through the build quickly, with more context along the way.", "Made the vehicle hero larger, with nothing competing for attention.", "Added controls to switch between exterior and interior views and see the build in different settings.", "Rewrote optional features in clearer language, with a link to standard features.", "Added package thumbnails so shoppers can compare packages at a glance.", "Created a persistent total-build module with a payment estimator and a clear next step."],
+   lede:"Fewer, clearer choices on the most visited page of mbusa.com.",
+   problem:"Build Your Own is where shoppers configure their dream car, but 80% left midway and never reached the summary. There were too many packages and options, little guidance on next steps, and the summary module covered the car.",
+   process:"Competitive analysis, a full audit, site analytics and customer surveys showed most shoppers only change exterior color and wheels. Jobs-to-be-done and two personas shaped the priorities, followed by sketches, prototypes and user testing.",
+   result:"Simpler categories, a larger vehicle hero, new view controls, package thumbnails for quick comparison, and a persistent total-build module with lease and finance estimates.",
+   stats:[["+6%","Reached the summary page"],["+75%","Saved builds"],["+44%","Inventory visits"]],
+   learn:"Make sure the team understands the problem before jumping to solutions.",
+   images:imgs("mercedes-byo", 7),
+   pdf:"pdfs/mercedes-byo-case-study.pdf", pdfLabel:"Full case study (PDF)"},
+  {slug:"pilot-flying-j", title:"Pilot Flying J Digital Strategy", type:"Strategy", year:"2017", archive:true,
+   ctx:["Pilot Flying J","Digital strategy","Experience maps"],
+   images:imgs("pilot-flying-j", 16)},
+  {slug:"nike-fuel-watch", title:"Nike+ Fuel Apple Watch", type:"Watch", year:"2015", archive:true,
+   ctx:["Nike","UX Designer, R/GA","Apple Watch concept"],
+   images:imgs("nike-fuel-watch", 18),
+   pdf:"pdfs/nike-fuel-watch-wireframes.pdf", pdfLabel:"Wireframes (PDF)"},
+  {slug:"nike-ar", title:"Nike+ Augmented Reality", type:"AR", year:"2015", archive:true,
+   ctx:["Nike","UX Designer, R/GA","Augmented reality"],
+   images:imgs("nike-ar", 9),
+   pdf:"pdfs/nike-ar-wireframes.pdf", pdfLabel:"Wireframes (PDF)"},
+  {slug:"nike-connected-jersey", title:"Nike+ Connected Jersey", type:"Connected", year:"2015", archive:true,
+   ctx:["Nike","UX Designer, R/GA","Connected product"],
+   images:imgs("nike-connected-jersey", 15),
+   pdf:"pdfs/nike-connected-jersey-wireframes.pdf", pdfLabel:"Wireframes (PDF)"},
+  {slug:"nike-retail", title:"Nike+ Retail Touch Points", type:"Retail", year:"2014", archive:true,
+   ctx:["Nike","UX Designer, R/GA","Retail experience"],
+   images:imgs("nike-retail-touchpoints", 25),
+   pdf:"pdfs/nike-retail-touchpoints-wireframes.pdf", pdfLabel:"Wireframes (PDF)"}
+];
+/* Old #work-N links (before DesignOS was added) forward to these */
+const LEGACY = ["chase-core-card","chase-wallet","mercedes-inventory","mercedes-build-your-own","pilot-flying-j","nike-fuel-watch","nike-ar","nike-connected-jersey","nike-retail"];
+const LINES = [
+  "loves to bring clarity to chaos.",
+  "sketches on paper before opening Figma.",
+  "asks “why” five times before drawing a box.",
+  "has been doing this since 2010 and still loves it.",
+  "loves to go for a long run."
+];
+/* ================================== */
+
+const app = document.getElementById("app");
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pad = n => String(n).padStart(2,"0");
+const total = WORK.length + 3;
+function nyTime(){ const d=new Date(); try { return d.toLocaleTimeString('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'2-digit',second:'2-digit'}); } catch { return d.toLocaleTimeString(); } }
+setInterval(() => { const t = nyTime(); document.querySelectorAll('[data-clock]').forEach(el => el.textContent = t); }, 1000);
+
+function meta(section, sub, page, view){
+  const isHome = viewName() === "index";
+  return `<aside class="side g"><div class="in">
+    <span class="who">${isHome ? "" : `<button class="back" type="button" data-back aria-label="Back"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>`}<a class="nm" href="/" data-link>${ME.name}</a></span>
+    <nav aria-label="Main">
+      <a href="/" data-link ${view==="work"?'aria-current="page"':""}>Work</a>
+      <a href="/about" data-link ${view==="about"?'aria-current="page"':""}>About</a>
+      <a href="/contact" data-link ${view==="contact"?'aria-current="page"':""}>Contact</a>
+      <a href="JiPark_Resume.pdf" download="JiPark_Resume.pdf" aria-label="Download resume (PDF)">Resume<svg class="dl" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1.5v6M3.25 5 6 7.75 8.75 5M2 10.5h8" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a></nav></div></aside>
+  <div class="g meta">
+    <div class="c3">${esc(section)}<br>${esc(sub)}</div>
+    <div class="c4" style="font-variant-numeric:tabular-nums"><span class="live" aria-hidden="true"></span>New York<br><span data-clock>${nyTime()}</span></div>
+    <div class="c5">${page}</div></div>`;
+}
+let viewed = new Set();
+try { viewed = new Set(JSON.parse(localStorage.getItem("jp-viewed-slugs") || "[]")); } catch {}
+function markViewed(i){ viewed.add(WORK[i].slug); try { localStorage.setItem("jp-viewed-slugs", JSON.stringify([...viewed])); } catch {} }
+const row = (w,i) => `<li><button class="rw${viewed.has(w.slug) ? ' seen' : ""}" data-i="${i}"><span class="n">${pad(i+1)}</span><span class="t">${esc(w.title)}${viewed.has(w.slug) ? '<span class="sr"> (viewed)</span>' : ""}</span><span class="k">${esc(w.type)}</span><span class="y">${esc(w.year)}</span></button></li>`;
+
+function index(){
+  const sel = WORK.map((w,i)=>[w,i]).filter(([w])=>!w.archive);
+  const arc = WORK.map((w,i)=>[w,i]).filter(([w])=>w.archive);
+  return meta("Portfolio","UX design, 2010 — 2026",1,"work") + `
+  <div class="body g">
+    <div class="col-main"><h1 id="rotator"><span class="fixed">I'm Ji, a UX designer who</span><span class="sr">${esc(LINES[0])}</span><span class="hls" aria-hidden="true">${LINES.map((l,k)=>`<span class="hl${k===0?" on":""}">${esc(l)}</span>`).join("")}</span></h1>
+      <span class="dash"></span><p class="small" style="max-width:617px">"Our pioneers are those who <em>transcend</em> interaction—designers whose creations <em>anticipate</em>, not <em>obey</em>. The hero of tomorrow is not the next Steve Wozniak, but the next William Playfair. An artist who redefines how people learn. An artist who paints with magic ink."</p></div>
+  </div>
+  <div class="g" style="margin-top:40px">
+    <div class="col-l">Contents</div>
+    <div class="col-main">
+      <div class="toc-label">1.0 Selected work</div>
+      <ol class="toc">${sel.map(([w,i])=>row(w,i)).join("")}</ol>
+      <div class="toc-label" style="margin-top:40px;color:var(--faint)">2.0 Archive</div>
+      <ol class="toc archive" style="margin-top:0">${arc.map(([w,i])=>row(w,i)).join("")}</ol>
+    </div>
+  </div>
+  <div class="g foot"><div class="c1">${esc(ME.tag)}</div><div class="c3"><a href="/contact" data-link>Contact →</a></div><div class="c5"></div></div>`;
+}
+
+function img(src, alt, cls){
+  return `<img class="${cls}" src="${src}" alt="${esc(alt)}" loading="lazy" onerror="this.outerHTML='<div class=&quot;${cls} ph&quot;><span>'+this.alt+'</span></div>'">`;
+}
+function countAttr(v, on){
+  if (!on) return "";
+  const m = /^([^\d]*)(\d+(?:\.\d+)?)(.*)$/.exec(v);
+  if (!m) return "";
+  const dec = (m[2].split(".")[1] || "").length;
+  return ` data-n="${m[2]}" data-dec="${dec}" data-pre="${esc(m[1])}" data-suf="${esc(m[3])}"`;
+}
+let countIO = null;
+function animateCounts(){
+  if (countIO) { countIO.disconnect(); countIO = null; }
+  const box = document.querySelector(".stats");
+  const els = box ? [...box.querySelectorAll("[data-n]")] : [];
+  if (!els.length || !window.IntersectionObserver || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  countIO = new IntersectionObserver(entries => {
+    if (!entries.some(e => e.isIntersecting)) return;
+    countIO.disconnect(); countIO = null;
+    const t0 = performance.now(), DUR = 1300, GAP = 160;
+    const step = now => {
+      let done = true;
+      els.forEach((el, k) => {
+        const p = Math.min(1, Math.max(0, (now - t0 - k * GAP) / DUR));
+        if (p < 1) done = false;
+        const e = 1 - Math.pow(1 - p, 3);
+        el.textContent = el.dataset.pre + (+el.dataset.n * e).toFixed(+el.dataset.dec) + el.dataset.suf;
+      });
+      if (!done) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, { threshold: 0.5 });
+  countIO.observe(box);
+}
+function caseView(i){
+  const w = WORK[i], prev = (i-1+WORK.length)%WORK.length, next = (i+1)%WORK.length;
+  const [cover, ...rest] = w.images;
+  const story = w.lede ? `
+  <div class="g" style="margin-top:72px"><div class="col-l">Story</div><div class="col-main"><h2>${esc(w.lede)}</h2></div></div>
+  <div class="g cols">
+    <section class="s1"><h3>The problem</h3><p>${esc(w.problem)}</p></section>
+    <section class="s2"><h3>The goal</h3><p>${esc(w.goal)}</p></section>
+    <section class="s3"><h3>The process</h3><p>${esc(w.process)}</p></section>
+  </div>
+  <div class="g" style="margin-top:80px"><div class="col-l">Key decisions</div>
+    <div class="col-main"><ol class="dec">${w.decisions.map((d,k)=>`<li><span>${pad(k+1)}</span><span>${esc(d)}</span></li>`).join("")}</ol></div></div>` : "";
+  const results = w.result ? `
+  <div class="g" style="margin-top:96px"><div class="col-l">Results</div><div class="col-main"><p class="prose" style="max-width:640px;font-size:clamp(15px,1.25vw,18px)">${esc(w.result)}</p></div></div>
+  ${w.stats ? `<div class="g stats">${w.stats.map(s=>`<div class="st"><div class="v"${countAttr(s[0], true)}>${esc(s[0])}</div><div class="l">${esc(s[1])}</div></div>`).join("")}</div>` : ""}
+  <div class="g" style="margin-top:96px"><div class="col-l">Key learning</div><div class="col-main"><h2>${esc(w.learn)}</h2></div></div>` : "";
+  return meta("Case Study", `${w.title}`, i+2, "work") + `
+  <div class="body g">
+    <div class="col-l">${esc(w.type)}</div>
+    <div class="col-main"><h1>${pad(i+1)}&nbsp;&nbsp;${esc(w.title)}</h1></div>
+  </div>
+  <div class="g" style="margin-top:40px">
+    <div class="col-l">Context</div>
+    <div class="col-main"><span class="dash" style="margin-top:0"></span>
+      <ul class="ctx"><li>${esc(w.year)}</li>${w.ctx.map(c=>`<li>${esc(c)}</li>`).join("")}${w.pdf ? `<li><a class="pdf" href="${w.pdf}" target="_blank" rel="noopener">${esc(w.pdfLabel)}</a></li>` : ""}</ul></div>
+    ${img(cover, w.title + " — image 1", "cover")}
+  </div>${story}
+  <div class="gallery">${rest.map((src,k)=>img(src, w.title + " — image " + (k+2), "gimg")).join("")}</div>${results}
+  <div class="g foot"><div class="c1"><button type="button" data-back>← Back</button></div>
+    <div class="c3">${i === 0 ? "" : `<button data-go="${prev}">Previous<br>${esc(WORK[prev].title)}</button>`}<button data-go="${next}">Next<br>${esc(WORK[next].title)}</button></div>
+    <div class="c5">${pad(i+1)} / ${pad(WORK.length)}</div></div>`;
+}
+
+function about(){
+  return meta("About","Ji Park", total-1, "about") + `
+  <div class="body g">
+    <div class="col-l">The intent</div>
+    <div class="col-main"><h1>The tools will continue to change. <br>The work remains: make technology useful, understandable and worthy of people's trust.</h1><span class="dash"></span></div>
+  </div>
+  <div class="g" style="margin-top:40px">
+    <div class="col-l">Approach</div>
+    <div class="col-main"><p class="prose" style="max-width:640px">Are we solving the right problem?</p></div>
+  </div>
+  <div class="g" style="margin-top:40px">
+    <div class="col-l">Experience</div>
+    <div class="col-main"><ul class="facts">
+      <li><span>2022 — present</span><span>VP UX Product Design Lead, <b>JPMorgan Chase &amp; Co.</b></span></li>
+      <li><span>2017 — 2022</span><span>Associate UX Director, <b>Publicis Sapient</b></span></li>
+      <li><span>2015 — 2016</span><span>Teaching Assistant, <b>School of Visual Arts</b></span></li>
+      <li><span>2011 — 2016</span><span>UX Designer, <b>R/GA</b></span></li>
+      <li><span>2010 — 2011</span><span>Junior Interaction Designer, <b>MRM</b></span></li></ul></div>
+  </div>
+  <div class="g" style="margin-top:40px">
+    <div class="col-l">Education</div>
+    <div class="col-main"><ul class="facts">
+      <li><span>2005</span><span>BFA, <b>School of the Art Institute of Chicago</b></span></li></ul></div>
+  </div>
+  <div class="g foot"><div class="c1">${esc(ME.tag)}</div><div class="c3"><a href="/" data-link>Work →</a><a href="/contact" data-link>Contact →</a></div><div class="c5">${pad(total-1)}</div></div>`;
+}
+
+function contact(){
+  return meta("Contact","Get in touch", total, "contact") + `
+  <div class="body g">
+    <div class="col-l">Contact</div>
+    <div class="col-main"><h1>Let's grab a virtual coffee.</h1><span class="dash"></span>
+      <p class="prose">Open to full-time and contract roles in product and UX design.</p></div>
+  </div>
+  <div class="g" style="margin-top:40px">
+    <div class="col-l">Direct</div>
+    <div class="col-main"><ul class="facts links">
+      <li><a id="email" href="mailto:${ME.email}">${ME.email}</a></li>
+      <li><a href="tel:+12019945465">1 201 994 5465</a></li>
+      <li><a href="JiPark_Resume.pdf" download="JiPark_Resume.pdf" aria-label="Download resume (PDF)">Download resume<svg class="dl" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1.5v6M3.25 5 6 7.75 8.75 5M2 10.5h8" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li></ul></div>
+  </div>
+  <div class="g" style="margin-top:40px">
+    <div class="col-l">Elsewhere</div>
+    <div class="col-main"><ul class="facts links">
+      <li><a href="${ME.linkedin}" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://www.strava.com/athletes/6032463" target="_blank" rel="noopener">Strava</a></li></ul></div>
+  </div>
+  <div class="g foot"><div class="c1">${esc(ME.tag)}</div><div class="c3"><button type="button" data-back>← Back</button></div><div class="c5">${pad(total)}</div></div>`;
+}
+
+let rotTimer = null;
+function startRotator(){
+  clearInterval(rotTimer);
+  const h = document.getElementById("rotator");
+  if (!h || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const items = [...h.querySelectorAll(".hl")];
+  let i = 0, paused = false;
+  h.addEventListener("mouseenter", () => paused = true);
+  h.addEventListener("mouseleave", () => paused = false);
+  rotTimer = setInterval(() => {
+    if (paused || document.hidden) return;
+    items.forEach(el => el.classList.remove("out"));
+    items[i].classList.replace("on", "out");
+    i = (i + 1) % items.length;
+    items[i].classList.add("on");
+  }, 3400);
+}
+let current = -1;
+function viewName(){
+  const p = location.pathname.replace(/^\/+|\/+$/g, "");
+  if (!p || p === "index.html" || p === "index") return "index";
+  return p;
+}
+function go(path){
+  if (path === location.pathname) return;
+  history.pushState(null, "", path); navDepth++; route();
+}
+function route(){
+  // forward old hash links (#work-3, #about…) to clean addresses
+  const h = location.hash.slice(1);
+  if (h) {
+    const m = h.match(/^work-(\d+)$/);
+    const to = m ? (LEGACY[+m[1]-1] ? "/" + LEGACY[+m[1]-1] : "/") : (h === "about" || h === "contact" ? "/" + h : "/");
+    history.replaceState(null, "", to);
+  }
+  const v = viewName();
+  const i = WORK.findIndex(w => w.slug === v);
+  current = -1;
+  if (i >= 0) { current = i; markViewed(i); app.innerHTML = caseView(i); document.title = WORK[i].title + " · Ji Park"; }
+  else if (v==="about") { app.innerHTML = about(); document.title = "About · Ji Park"; }
+  else if (v==="contact") { app.innerHTML = contact(); document.title = "Contact · Ji Park"; }
+  else { if (v !== "index") history.replaceState(null, "", "/"); app.innerHTML = index(); document.title = "Ji Park Magic Ink"; }
+  scrollTo(0,0);
+  startRotator();
+  animateCounts();
+  const c = document.getElementById("copy");
+  if (c) c.onclick = async () => {
+    try { await navigator.clipboard.writeText(ME.email); c.textContent = "Copied"; }
+    catch { const r=document.createRange(); r.selectNodeContents(document.getElementById("email")); const s=getSelection(); s.removeAllRanges(); s.addRange(r); c.textContent = "Selected, press ⌘C to copy"; }
+  };
+}
+let toastTimer;
+document.addEventListener("click", e => {
+  if (!e.target.closest('a[download]')) return;
+  const t = document.getElementById("toast");
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove("show"), 3200);
+});
+let navDepth = 0, goingBack = false;
+app.addEventListener("click", e => {
+  if (e.target.closest("[data-back]")) {
+    if (navDepth > 0) { history.back(); } else go("/");
+    return;
+  }
+  const ext = e.target.closest("[data-ext]");
+  if (ext) { markViewed(+ext.dataset.ext); ext.classList.add("seen"); return; }
+  const b = e.target.closest("[data-i],[data-go]");
+  if (!b) return;
+  go("/" + WORK[+(b.dataset.i ?? b.dataset.go)].slug);
+});
+document.addEventListener("click", e => {
+  const a = e.target.closest("a[data-link]");
+  if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
+  e.preventDefault(); go(a.getAttribute("href"));
+});
+addEventListener("keydown", e => {
+  if (e.metaKey||e.ctrlKey||e.altKey) return;
+  const n = WORK.length;
+  if (e.key==="ArrowRight") go("/" + WORK[current<0 ? 0 : (current+1)%n].slug);
+  if (e.key==="ArrowLeft" && current>=0) go("/" + WORK[(current-1+n)%n].slug);
+  if (e.key==="Escape") go("/");
+});
+addEventListener("popstate", () => { navDepth = Math.max(0, navDepth - 1); route(); });
+addEventListener("hashchange", route);
+route();
+
+/* Background: drifting dots joined by hairlines, like the deck's node drawings */
+(function(){
+  const c = document.getElementById("bg"), x = c.getContext("2d");
+  if (!x) return;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const LINK = 150, PUSH = 130;
+  const SPARK = ['143,168,255','127,224,212','255,184,107','229,156,255','255,143,163'];
+  let W = 0, H = 0, pts = [], raf = 0, mouse = { x: -9999, y: -9999 };
+  function size(){
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = innerWidth; H = innerHeight;
+    c.width = W * dpr; c.height = H * dpr;
+    x.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const n = Math.round(Math.max(28, Math.min(90, W * H / 15000)));
+    pts = Array.from({ length: n }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - .5) * .28, vy: (Math.random() - .5) * .28,
+      r: Math.random() < .12 ? 2.4 : 1.1
+    }));
+  }
+  function draw(){
+    x.clearRect(0, 0, W, H);
+    if (!reduce) for (const p of pts) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+      const dx = p.x - mouse.x, dy = p.y - mouse.y, d = Math.hypot(dx, dy);
+      if (d < PUSH && d > 0) { const f = (1 - d / PUSH) * 1.4; p.x += dx / d * f; p.y += dy / d * f; }
+    }
+    x.lineWidth = .5;
+    for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
+      const a = pts[i], b = pts[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (d < LINK) {
+        x.strokeStyle = `rgba(255,255,255,${((1 - d / LINK) * .2).toFixed(3)})`;
+        x.beginPath(); x.moveTo(a.x, a.y); x.lineTo(b.x, b.y); x.stroke();
+      }
+    }
+    for (const p of pts) {
+      x.fillStyle = p.r > 2 ? "rgba(255,255,255,.7)" : "rgba(255,255,255,.4)";
+      x.beginPath(); x.arc(p.x, p.y, p.r, 0, Math.PI * 2); x.fill();
+    }
+    for (const p of pts) {
+      if (!p.t && !reduce && Math.random() < .0003) { p.t = 1; p.c = SPARK[Math.floor(Math.random() * SPARK.length)]; }
+      if (p.t) {
+        var e = Math.sin(Math.PI * (1 - p.t)), g = x.createRadialGradient(p.x, p.y, 0, p.x, p.y, 14);
+        g.addColorStop(0, 'rgba(' + p.c + ',' + (.55 * e).toFixed(3) + ')'); g.addColorStop(1, 'rgba(' + p.c + ',0)');
+        x.fillStyle = g; x.beginPath(); x.arc(p.x, p.y, 14, 0, Math.PI * 2); x.fill();
+        x.fillStyle = 'rgba(' + p.c + ',' + (.9 * e).toFixed(3) + ')'; x.beginPath(); x.arc(p.x, p.y, p.r + .6, 0, Math.PI * 2); x.fill();
+        p.t = Math.max(0, p.t - 1 / 110);
+      }
+    }
+    if (!reduce) raf = requestAnimationFrame(draw);
+  }
+  let rt;
+  addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { size(); if (reduce) draw(); }, 150); });
+  addEventListener("pointermove", e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+  addEventListener("pointerleave", () => { mouse.x = mouse.y = -9999; });
+  document.addEventListener("visibilitychange", () => {
+    if (reduce) return;
+    if (document.hidden) cancelAnimationFrame(raf); else raf = requestAnimationFrame(draw);
+  });
+  size(); draw();
+})();
+</script>
+</body>
+</html>
