@@ -234,6 +234,15 @@ a:hover,button:hover{cursor:progress!important}
 .pt-hide{opacity:0;transform:translateY(6px)}
 .pt-col li,.pt-canvas,.pt-status{transition:opacity .45s ease,transform .45s cubic-bezier(.2,.7,.2,1)}
 .pt-cap{color:var(--dim);margin:10px 0 0}
+.pt-req{position:relative}
+.pt-coach{position:absolute;left:calc(100% - 6px);transform:translateY(-50%);z-index:4;width:210px;display:grid;grid-template-columns:10px 1fr 16px;gap:8px;align-items:start;padding:10px 10px 10px 12px;background:var(--sky);color:#0B1520;font-size:12px;line-height:1.35;box-shadow:0 8px 24px rgba(0,0,0,.45);animation:coachIn .5s cubic-bezier(.2,.7,.2,1) both}
+.pt-coach::before{content:"";position:absolute;left:-6px;top:50%;margin-top:-6px;border:6px solid transparent;border-left:0;border-right-color:var(--sky)}
+.pt-coach button{color:#0B1520;font-size:15px;line-height:1;text-align:center}
+.pt-pulse{width:8px;height:8px;margin-top:4px;border-radius:50%;background:#0B1520}
+.pt-r.pt-hint{border-color:var(--sky)}
+@keyframes coachIn{from{opacity:0;margin-left:8px}to{opacity:1;margin-left:0}}
+@media (prefers-reduced-motion:no-preference){.pt-pulse{animation:pulse 1.6s ease-in-out infinite}.pt-r.pt-hint{animation:hintRing 1.6s ease-in-out infinite}}
+@keyframes hintRing{0%,100%{box-shadow:0 0 0 0 rgba(156,203,230,.55)}50%{box-shadow:0 0 0 5px rgba(156,203,230,0)}}
 /* drafts */
 .pd-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .pd-opts figure{margin:0;position:relative}.pd-opts .pd-a{grid-column:1/3}
@@ -270,6 +279,7 @@ a:hover,button:hover{cursor:progress!important}
   .pt-req,.pt-draft{border-right:0;border-bottom:1px solid var(--rule)}
   .pt-req ol{display:flex;gap:6px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px}
   .pt-req li{flex:0 0 72%;scroll-snap-align:start}
+  .pt-coach{position:static;transform:none;width:auto;margin:0 0 10px}.pt-coach::before{display:none}
   .pt-r{height:100%;margin:0}
   .pt-meta{grid-template-columns:1fr 1fr}
   .pt-checks li{grid-template-columns:18px minmax(0,1fr)}.pt-checks small{grid-column:2}
@@ -617,7 +627,7 @@ function protoHTML(){
   return `<div class="proto" id="proto" aria-label="DesignOS live prototype">
   <div class="pt-bar"><span class="pt-dots"><i></i><i></i><i></i></span><span>designos v1.0 · luma</span><button type="button" class="pt-replay" data-replay>Replay ↻</button></div>
   <div class="pt-grid">
-    <div class="pt-col pt-req"><div class="pt-h">Incoming requests</div><ol>${PROTO.map((r,i)=>`<li><button type="button" class="pt-r" data-pr="${i}" aria-pressed="false"><span>${esc(r.t)}</span><small>${r.src} · ${r.vol?"volume "+r.vol:"no skill fits"}</small></button></li>`).join("")}</ol>
+    <div class="pt-col pt-req"><div class="pt-h">Incoming requests</div><div class="pt-coach" id="pt-coach" hidden role="status"><span class="pt-pulse" aria-hidden="true"></span><span>Click any incoming request to see how DesignOS handles it.</span><button type="button" data-coach-x aria-label="Dismiss tip">×</button></div><ol>${PROTO.map((r,i)=>`<li><button type="button" class="pt-r" data-pr="${i}" aria-pressed="false"><span>${esc(r.t)}</span><small>${r.src} · ${r.vol?"volume "+r.vol:"no skill fits"}</small></button></li>`).join("")}</ol>
       <p class="pt-note">Requests arrive from Slack, Notion and Claude. No one opens this screen to ask.</p></div>
     <div class="pt-col pt-draft"><div class="pt-h">Draft</div><div id="pt-main"></div></div>
     <div class="pt-col pt-trace"><details open id="pt-det"><summary class="pt-h">System trace</summary><ol id="pt-trace"></ol></details></div>
@@ -642,7 +652,7 @@ function protoPlay(i){
   const steps = [...tr.children];
   const canvas = root.querySelector(".pt-canvas"), checks = [...root.querySelectorAll(".pt-checks li")], status = root.querySelector(".pt-status");
   const show = el => el && el.classList.remove("pt-hide");
-  if (instant) { [...steps, canvas, ...checks, status].forEach(show); return; }
+  if (instant) { [...steps, canvas, ...checks, status].forEach(show); if (i === 0) protoCoach(); return; }
   let t = 150, ci = 0;
   steps.forEach(li => {
     const k = li.firstChild.textContent;
@@ -654,6 +664,21 @@ function protoPlay(i){
     t += k === "draft.build" ? 700 : 380;
   });
   protoTimers.push(setTimeout(() => { checks.forEach(show); show(canvas); show(status); }, t + 200));
+  if (i === 0) protoTimers.push(setTimeout(protoCoach, t + 900));
+}
+let coachDone = false;
+try { coachDone = localStorage.getItem("jp-proto-coach") === "1"; } catch {}
+function protoCoach(){
+  const c = document.getElementById("pt-coach"); if (!c || coachDone) return;
+  const second = document.querySelector('.pt-r[data-pr="1"]');
+  if (second && !matchMedia("(max-width:860px)").matches) c.style.top = (second.offsetTop + second.offsetHeight/2) + "px";
+  if (matchMedia("(hover:none)").matches) c.children[1].textContent = "Tap any incoming request to see how DesignOS handles it.";
+  c.hidden = false; second && second.classList.add("pt-hint");
+}
+function coachDismiss(){
+  coachDone = true; try { localStorage.setItem("jp-proto-coach","1"); } catch {}
+  const c = document.getElementById("pt-coach"); if (c) c.hidden = true;
+  document.querySelectorAll(".pt-hint").forEach(b=>b.classList.remove("pt-hint"));
 }
 function initProto(){
   const root = document.getElementById("proto"); if (!root) return;
@@ -661,7 +686,8 @@ function initProto(){
   protoSeen = false;
   if (matchMedia("(max-width:860px)").matches) document.getElementById("pt-det").open = false;
   root.addEventListener("click", e => {
-    const b = e.target.closest("[data-pr]"); if (b) { protoSeen = true; protoPlay(+b.dataset.pr); return; }
+    if (e.target.closest("[data-coach-x]")) { coachDismiss(); return; }
+    const b = e.target.closest("[data-pr]"); if (b) { protoSeen = true; coachDismiss(); protoPlay(+b.dataset.pr); return; }
     if (e.target.closest("[data-replay]")) { const on = root.querySelector(".pt-r.on"); protoPlay(on ? +on.dataset.pr : 0); }
   });
   if (!window.IntersectionObserver) { protoPlay(0); return; }
