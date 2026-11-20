@@ -197,11 +197,6 @@ h2{font-size:clamp(26px,2.6vw,36px);line-height:1.12}
 a:hover,button:hover{cursor:progress!important}
 @media (prefers-reduced-motion:no-preference){a:hover,a:focus-visible,button:hover,button:focus-visible{animation:breath 1.5s ease-in-out infinite!important}}
 @media (prefers-reduced-motion:reduce){a:hover,button:hover{opacity:.57}}
-/* Embedded film (DesignOS). See DESIGN.md. */
-.film-wrap{grid-column:3/13;margin-top:72px;min-width:0}
-.film-wrap video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#e9edf0}
-.film-cap{color:var(--dim);margin:0 0 10px}
-@media (max-width:860px){.film-wrap{grid-column:1/5;margin-top:48px}}
 </style>
 </head>
 <body>
@@ -390,7 +385,7 @@ function animateCounts(){
 function caseView(i){
   const w = WORK[i], prev = (i-1+WORK.length)%WORK.length, next = (i+1)%WORK.length;
   const [cover, ...rest] = w.images;
-  const top = w.film ? `<div class="film-wrap"><p class="film-cap small">How DesignOS works: a request in plain words becomes a finished, on-brand brochure.</p><video src="${w.film}" poster="${w.film.replace(".mp4","-poster.jpg")}" autoplay muted loop playsinline controls preload="metadata" aria-label="Animation: a requester types @DesignOS I need a brochure for LUMA for my clients. DesignOS builds and checks it, and three brochure covers are delivered."></video></div>` : img(cover, w.title + " — image 1", "cover");
+  const top = img(cover, w.title + " — image 1", "cover");
   const story = w.lede ? `
   <div class="g" style="margin-top:72px"><div class="col-l">Story</div><div class="col-main"><h2>${esc(w.lede)}</h2></div></div>
   <div class="g cols">
@@ -516,8 +511,6 @@ function route(){
   scrollTo(0,0);
   startRotator();
   animateCounts();
-  const fv = document.querySelector(".film-wrap video");
-  if (fv && matchMedia("(prefers-reduced-motion: reduce)").matches) { fv.removeAttribute("autoplay"); fv.pause(); }
   const c = document.getElementById("copy");
   if (c) c.onclick = async () => {
     try { await navigator.clipboard.writeText(ME.email); c.textContent = "Copied"; }

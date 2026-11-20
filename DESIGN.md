@@ -98,8 +98,3 @@ The tone is editorial, calm and precise. Personality comes from motion (the livi
 - No color outside the background sparks.
 - Don't change the slide structure (nav, metadata row, label column / content column) without updating this file first.
 
-## Embedded film (exception)
-- The DesignOS case study opens with a looping, muted MP4 (`videos/designos-flow.mp4`) in place of its cover image: a requester types "@DesignOS I need a brochure for LUMA for my clients," and the film shows DesignOS building, checking and delivering it.
-- It is product content shown in a frame, like an image, so it may use LUMA's colors and Inter. These never leak into the site's own UI.
-- It sits in columns 3–12 on desktop and full width on mobile. Native controls let anyone pause it; under reduced motion it does not autoplay.
-- Source: an HTML animation rendered frame by frame (ask the author for film.html); the DesignOS mark is an ink stroke, a nod to Magic Ink.
