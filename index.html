@@ -240,6 +240,7 @@ a:hover,button:hover{cursor:progress!important}
 .pt-coach button{color:#0B1520;font-size:15px;line-height:1;text-align:center}
 .pt-pulse{width:8px;height:8px;margin-top:4px;border-radius:50%;background:#0B1520}
 .pt-r.pt-hint{border-color:var(--sky)}
+.pt-coach.pt-coach-top{position:static;transform:none;width:auto;margin:0 0 10px}.pt-coach.pt-coach-top::before{display:none}
 @keyframes coachIn{from{opacity:0;margin-right:8px}to{opacity:1;margin-right:0}}
 @media (prefers-reduced-motion:no-preference){.pt-pulse{animation:pulse 1.6s ease-in-out infinite}.pt-r.pt-hint{animation:hintRing 1.6s ease-in-out infinite}}
 @keyframes hintRing{0%,100%{box-shadow:0 0 0 0 rgba(156,203,230,.55)}50%{box-shadow:0 0 0 5px rgba(156,203,230,0)}}
@@ -653,7 +654,8 @@ function protoPlay(i){
   const steps = [...tr.children];
   const canvas = root.querySelector(".pt-canvas"), checks = [...root.querySelectorAll(".pt-checks li")], status = root.querySelector(".pt-status");
   const show = el => el && el.classList.remove("pt-hide");
-  if (instant) { [...steps, canvas, ...checks, status].forEach(show); if (i === 0) protoCoach(); return; }
+  if (i === 0) protoCoach();
+  if (instant) { [...steps, canvas, ...checks, status].forEach(show); return; }
   let t = 150, ci = 0;
   steps.forEach(li => {
     const k = li.firstChild.textContent;
@@ -665,27 +667,28 @@ function protoPlay(i){
     t += k === "draft.build" ? 700 : 380;
   });
   protoTimers.push(setTimeout(() => { checks.forEach(show); show(canvas); show(status); }, t + 200));
-  if (i === 0) protoTimers.push(setTimeout(protoCoach, t + 900));
+
 }
 let coachDone = false;
-try { coachDone = localStorage.getItem("jp-proto-coach") === "1"; } catch {}
 function protoCoach(){
   const c = document.getElementById("pt-coach"); if (!c || coachDone) return;
   const second = document.querySelector('.pt-r[data-pr="1"]');
   const wrap = c.parentElement;
-  if (second && !matchMedia("(max-width:860px)").matches) { const a = second.getBoundingClientRect(), w = wrap.getBoundingClientRect(); c.style.top = (a.top - w.top + a.height/2) + "px"; }
+  const w = wrap.getBoundingClientRect(), side = !matchMedia("(max-width:860px)").matches && w.left >= 200;
+  c.classList.toggle("pt-coach-top", !side);
+  if (second && side) { const a = second.getBoundingClientRect(); c.style.top = (a.top - w.top + a.height/2) + "px"; }
   if (matchMedia("(hover:none)").matches) c.children[1].textContent = "Tap any incoming request to see how DesignOS handles it.";
   c.hidden = false; second && second.classList.add("pt-hint");
 }
 function coachDismiss(){
-  coachDone = true; try { localStorage.setItem("jp-proto-coach","1"); } catch {}
+  coachDone = true;
   const c = document.getElementById("pt-coach"); if (c) c.hidden = true;
   document.querySelectorAll(".pt-hint").forEach(b=>b.classList.remove("pt-hint"));
 }
 function initProto(){
   const root = document.getElementById("proto"); if (!root) return;
   if (protoIO) { protoIO.disconnect(); protoIO = null; }
-  protoSeen = false;
+  protoSeen = false; coachDone = false;
   if (matchMedia("(max-width:860px)").matches) document.getElementById("pt-det").open = false;
   root.addEventListener("click", e => {
     if (e.target.closest("[data-coach-x]")) { coachDismiss(); return; }
