@@ -24,8 +24,9 @@ For any task that touches UI, styling, motion, layout or copy tone:
 
 ## Tech + hosting
 - One static file: `index.html` (inline CSS + vanilla JS). No frameworks, no build step, no WordPress.
-- Clean URLs: `/`, `/<project-slug>` (each WORK item has a `slug`), `/about`, `/contact`. `_redirects` (`/* /index.html 200`) sends every path to index.html; `<base href="/">` keeps relative asset paths working. Old `#work-N` links forward via the `LEGACY` array; don't reorder it.
-- Live on Netlify at magicinkux.com (domain at Porkbun). Clean URLs need Netlify's `_redirects`; on a host without redirects, only `/` works.
+- Clean URLs: `/`, `/<project-slug>` (each WORK item has a `slug`), `/about`, `/contact`. `<base href="/">` keeps relative asset paths working. Old `#work-N` links forward via the `LEGACY` array; don't reorder it.
+- Hosted on GitHub Pages at magicinkux.com (domain at Porkbun). Every push to `main` runs `.github/workflows/pages.yml`, which runs `scripts/build-pages.sh`: it copies `index.html` into a folder for every WORK slug plus `about` and `contact` (GitHub Pages has no rewrites), and publishes only site files (not the .md notes). A new project only needs a `slug` in WORK; its address is created automatically.
+- `_redirects` and `_headers` are Netlify-only leftovers; GitHub Pages ignores them. The resume still downloads via the link's `download` attribute.
 - Images live in `images/<project>/<project>-01.jpg` (loaded via the `imgs("slug", count)` helper); PDFs in `pdfs/`. Paths are relative, so the site works on any host. Update the count in WORK when adding images.
 - Performance: aim for no image over 300KB when adding new ones (WebP preferred).
 - Respect `prefers-reduced-motion` (already built in; keep it working).
