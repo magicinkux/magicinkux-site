@@ -233,7 +233,7 @@ a:hover,button:hover{cursor:progress!important}
 .pt-trace b{font-weight:400;color:#cfcfcf}.pt-trace b.ok{color:var(--pass)}.pt-trace b.bad{color:var(--warn)}
 .pt-hide{opacity:0;transform:translateY(6px)}
 .pt-col li,.pt-canvas,.pt-status{transition:opacity .45s ease,transform .45s cubic-bezier(.2,.7,.2,1)}
-.pt-cap{color:var(--dim);margin:10px 0 0}
+.pt-cap{color:var(--dim);margin:0 0 10px}
 .pt-req{position:relative}
 .pt-coach{position:absolute;left:calc(100% - 6px);transform:translateY(-50%);z-index:4;width:210px;display:grid;grid-template-columns:10px 1fr 16px;gap:8px;align-items:start;padding:10px 10px 10px 12px;background:var(--sky);color:#0B1520;font-size:12px;line-height:1.35;box-shadow:0 8px 24px rgba(0,0,0,.45);animation:coachIn .5s cubic-bezier(.2,.7,.2,1) both}
 .pt-coach::before{content:"";position:absolute;left:-6px;top:50%;margin-top:-6px;border:6px solid transparent;border-left:0;border-right-color:var(--sky)}
@@ -624,15 +624,15 @@ function protoDraft(k){
   return `<div class="pd-none">No skill fits this request.<br>DesignOS doesn't guess. It hands new work to a designer.</div>`;
 }
 function protoHTML(){
-  return `<div class="proto" id="proto" aria-label="DesignOS live prototype">
+  return `<p class="pt-cap small">Live prototype. Click any request to see how DesignOS handles it.</p>
+  <div class="proto" id="proto" aria-label="DesignOS live prototype">
   <div class="pt-bar"><span class="pt-dots"><i></i><i></i><i></i></span><span>designos v1.0 · luma</span><button type="button" class="pt-replay" data-replay>Replay ↻</button></div>
   <div class="pt-grid">
     <div class="pt-col pt-req"><div class="pt-h">Incoming requests</div><div class="pt-coach" id="pt-coach" hidden role="status"><span class="pt-pulse" aria-hidden="true"></span><span>Click any incoming request to see how DesignOS handles it.</span><button type="button" data-coach-x aria-label="Dismiss tip">×</button></div><ol>${PROTO.map((r,i)=>`<li><button type="button" class="pt-r" data-pr="${i}" aria-pressed="false"><span>${esc(r.t)}</span><small>${r.src} · ${r.vol?"volume "+r.vol:"no skill fits"}</small></button></li>`).join("")}</ol>
       <p class="pt-note">Requests arrive from Slack, Notion and Claude. No one opens this screen to ask.</p></div>
     <div class="pt-col pt-draft"><div class="pt-h">Draft</div><div id="pt-main"></div></div>
     <div class="pt-col pt-trace"><details open id="pt-det"><summary class="pt-h">System trace</summary><ol id="pt-trace"></ol></details></div>
-  </div></div>
-  <p class="pt-cap small">Live prototype. Click any request to see how DesignOS handles it.</p>`;
+  </div></div>`;
 }
 let protoTimers = [], protoSeen = false, protoIO = null;
 function protoPlay(i){
