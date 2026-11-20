@@ -197,6 +197,86 @@ h2{font-size:clamp(26px,2.6vw,36px);line-height:1.12}
 a:hover,button:hover{cursor:progress!important}
 @media (prefers-reduced-motion:no-preference){a:hover,a:focus-visible,button:hover,button:focus-visible{animation:breath 1.5s ease-in-out infinite!important}}
 @media (prefers-reduced-motion:reduce){a:hover,button:hover{opacity:.57}}
+/* Embedded prototype (DesignOS). An exception to the no-color rule: it is product content in a frame, like an image. See DESIGN.md. */
+.proto-wrap{grid-column:3/13;margin-top:72px;min-width:0}
+.proto{--pass:#46C98B;--sky:#9CCBE6;--warn:#E0B44F;--mono:ui-monospace,"SF Mono",Menlo,monospace;background:#0A0A0A;border:1px solid var(--rule);font-size:12px;line-height:1.4;color:var(--fg)}
+.proto button{cursor:pointer}
+.pt-bar{display:flex;align-items:center;gap:16px;padding:10px 14px;border-bottom:1px solid var(--rule);font-family:var(--mono);font-size:11px;color:var(--dim)}
+.pt-bar>span:nth-child(2){flex:1;text-align:center}
+.pt-dots{display:flex;gap:6px}.pt-dots i{width:8px;height:8px;border-radius:50%;background:#2a2a2a}
+.pt-replay{font-family:var(--mono);font-size:11px;color:var(--dim)}
+.pt-grid{display:grid;grid-template-columns:minmax(0,250px) minmax(0,1fr) minmax(0,230px)}
+.pt-col{padding:16px;min-width:0}
+.pt-req,.pt-draft{border-right:1px solid var(--rule)}
+.pt-h{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:12px;list-style:none}
+.pt-h::-webkit-details-marker{display:none}
+.pt-req ol,.pt-trace ol,.pt-checks{list-style:none;margin:0;padding:0}
+.pt-r{display:block;width:100%;padding:9px 10px;border:1px solid var(--rule);margin-bottom:6px;transition:border-color .2s}
+.pt-r span{display:block;font-size:12.5px}
+.pt-r small{display:block;color:var(--dim);font-size:10.5px;margin-top:3px}
+.pt-r.on{border-color:var(--fg)}
+.pt-note{color:var(--faint);font-size:10.5px;margin:14px 0 0}
+.pt-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}
+.pt-meta small{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);margin-bottom:3px}
+.pt-vol{display:inline-flex;align-items:flex-end;gap:2px;vertical-align:-1px;margin-right:4px}
+.pt-vol i{width:3px;background:#333}.pt-vol i.on{background:var(--fg)}
+.pt-canvas{background:#141414;padding:10px;margin-bottom:12px;min-height:150px}
+.pt-checks li{display:grid;grid-template-columns:18px minmax(0,110px) minmax(0,1fr);gap:8px;align-items:baseline;padding:7px 10px;border-left:2px solid var(--pass);background:#111;margin-bottom:4px}
+.pt-ok{color:var(--pass)}
+.pt-checks small{color:var(--dim);font-size:11px}
+.pt-status{margin-top:12px;padding:10px 12px;border:1px solid var(--rule);font-size:12.5px}
+.pt-status.pt-designer,.pt-status.pt-lead{border-color:var(--sky)}
+.pt-status.pt-ship{border-color:var(--pass)}
+.pt-status.pt-ask{border-color:var(--warn)}
+.pt-trace li{font-family:var(--mono);font-size:11px;padding:3px 0}
+.pt-trace li span{display:block;color:var(--dim)}
+.pt-trace b{font-weight:400;color:#cfcfcf}.pt-trace b.ok{color:var(--pass)}.pt-trace b.bad{color:var(--warn)}
+.pt-hide{opacity:0;transform:translateY(6px)}
+.pt-col li,.pt-canvas,.pt-status{transition:opacity .45s ease,transform .45s cubic-bezier(.2,.7,.2,1)}
+.pt-cap{color:var(--dim);margin:10px 0 0}
+/* drafts */
+.pd-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pd-opts figure{margin:0;position:relative}.pd-opts .pd-a{grid-column:1/3}
+.pd-opts img,.pd-hero img{display:block;width:100%;height:auto}
+.pd-chip{position:absolute;right:6px;bottom:6px;font-family:var(--mono);font-size:9.5px;padding:2px 7px;border-radius:9px;background:#111;color:#fff}
+.pd-chip.picked{background:var(--sky);color:#0b1520}
+.pd-page,.pd-email,.pd-social,.pd-promo,.pd-brief{background:#F4F3F0;color:#111;font-family:Inter,"Helvetica Neue",Arial,sans-serif}
+.pd-page .pd-nav{display:flex;justify-content:space-between;padding:8px 12px;font-size:10px;border-bottom:1px solid #ddd}
+.pd-hero{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px 12px;align-items:center}
+.pd-hero small,.pd-email small,.pd-social small,.pd-promo small,.pd-brief small{font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:#666}
+.pd-hero h4,.pd-promo h4{font-weight:500;font-size:22px;line-height:1.05;margin:6px 0}
+.pd-hero p{margin:0 0 10px;color:#555;font-size:11px}
+.pd-btn{display:inline-block;background:var(--sky);border-radius:12px;padding:4px 10px;font-size:10px}
+.pd-email{max-width:300px;margin:0 auto;padding:16px}
+.pd-email b,.pd-social b,.pd-promo b{display:block;letter-spacing:.08em;margin-bottom:10px}
+.pd-score{display:flex;align-items:flex-end;gap:12px;margin:8px 0}
+.pd-score span{font-size:44px;line-height:1;font-weight:500}
+.pd-dots{display:inline-flex;gap:4px;margin-bottom:6px}.pd-dots i{width:7px;height:7px;border-radius:50%;background:#d3dae0}
+.pd-dots i.on:nth-child(1){background:#C9A84E}.pd-dots i.on:nth-child(2){background:#D2C07E}.pd-dots i.on:nth-child(3){background:#C3CDB0}.pd-dots i.on:nth-child(4){background:#AECFD6}.pd-dots i.on:nth-child(5){background:#8FC0E0}
+.pd-email p{font-size:11px;color:#444;margin:6px 0 0}
+.pd-social{width:200px;aspect-ratio:1;margin:0 auto;padding:14px;display:flex;flex-direction:column}
+.pd-social span{font-size:56px;font-weight:500;letter-spacing:-.03em;margin-top:auto}
+.pd-phones{display:flex;gap:10px;justify-content:center}
+.pd-phone{width:30%;max-width:110px;aspect-ratio:9/18;border-radius:14px;background:#D6E9F3;color:#1f2428;padding:12px 10px;display:flex;flex-direction:column}
+.pd-phone:nth-child(2){background:#E3E8DA}.pd-phone:nth-child(3){background:#EFE4C6}
+.pd-phone small{font-family:var(--mono);font-size:8px;letter-spacing:.05em}
+.pd-phone span{font-size:34px;font-weight:500;margin-top:auto}
+.pd-promo{padding:18px 16px;background:#9CCBE6}
+.pd-brief{padding:16px}.pd-brief ol{margin:8px 0 0;padding-left:18px;font-size:12px;line-height:1.7}
+.pd-none{border:1px dashed #444;color:var(--dim);padding:40px 16px;text-align:center;font-size:12px;line-height:1.6}
+@media (max-width:860px){
+  .proto-wrap{grid-column:1/5;margin-top:48px}
+  .pt-grid{grid-template-columns:minmax(0,1fr)}
+  .pt-req,.pt-draft{border-right:0;border-bottom:1px solid var(--rule)}
+  .pt-req ol{display:flex;gap:6px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px}
+  .pt-req li{flex:0 0 72%;scroll-snap-align:start}
+  .pt-r{height:100%;margin:0}
+  .pt-meta{grid-template-columns:1fr 1fr}
+  .pt-checks li{grid-template-columns:18px minmax(0,1fr)}.pt-checks small{grid-column:2}
+  .pt-trace .pt-h{display:flex;justify-content:space-between}.pt-trace .pt-h::after{content:"+"}
+  .pt-trace details[open] .pt-h::after{content:"−"}
+}
+@media (prefers-reduced-motion:reduce){.pt-col li,.pt-canvas,.pt-status{transition:none}}
 </style>
 </head>
 <body>
@@ -221,7 +301,7 @@ const WORK = [
    decisions:["Designers write the skills and product facts. The AI only builds inside them.", "Every piece of work gets a volume from 1 to 5. Quiet work ships on its own; loud work gets a designer's review.", "The AI checks every draft for accessibility, system use, voice, product truth and recognition before anyone sees it.", "Requests arrive where work already starts, in Slack, Notion and Claude. There is no new tool to learn.", "The AI makes several options, the requester picks one, and a designer approves anything loud.", "Every step shows up in a visible trace, and every draft stays editable.", "For LUMA, I designed the brand as an interface: a solid L that frames a window of mountain air and changes with the time of day and the air quality."],
    result:"A working prototype that shows what the AI is doing: incoming requests, three draft options with checks, and the system trace, plus a full LUMA identity and the campaign the AI built from it. Goals for a first pilot, not results: 60% of work self-served, 10 minutes or less to an editable draft, and 70% of designer time on new ideas.",
    learn:"I don't design every screen. I design the system that helps everyone design well.",
-   images:imgs("designos", 14),
+   images:imgs("designos", 14), proto:true,
    pdf:"pdfs/designos-case-study.pdf", pdfLabel:"Full deck (PDF)"},
   {slug:"chase-core-card", title:"Chase Core Card MVP", type:"App", year:"2025", animate:true,
    ctx:["JPMorgan Chase & Co.","Card and Channels DCE","Cross-functional product, design and marketing quads","Jobs-to-be-done research","Information architecture audit","Prototyping and testing"],
@@ -385,6 +465,7 @@ function animateCounts(){
 function caseView(i){
   const w = WORK[i], prev = (i-1+WORK.length)%WORK.length, next = (i+1)%WORK.length;
   const [cover, ...rest] = w.images;
+  const top = w.proto ? `<div class="proto-wrap">${protoHTML()}</div>` : img(cover, w.title + " — image 1", "cover");
   const story = w.lede ? `
   <div class="g" style="margin-top:72px"><div class="col-l">Story</div><div class="col-main"><h2>${esc(w.lede)}</h2></div></div>
   <div class="g cols">
@@ -407,7 +488,7 @@ function caseView(i){
     <div class="col-l">Context</div>
     <div class="col-main"><span class="dash" style="margin-top:0"></span>
       <ul class="ctx"><li>${esc(w.year)}</li>${w.ctx.map(c=>`<li>${esc(c)}</li>`).join("")}${w.pdf ? `<li><a class="pdf" href="${w.pdf}" target="_blank" rel="noopener">${esc(w.pdfLabel)}</a></li>` : ""}</ul></div>
-    ${img(cover, w.title + " — image 1", "cover")}
+    ${top}
   </div>${story}
   <div class="gallery">${rest.map((src,k)=>img(src, w.title + " — image " + (k+2), "gimg")).join("")}</div>${results}
   <div class="g foot"><div class="c1"><button type="button" data-back>← Back</button></div>
@@ -482,6 +563,112 @@ function startRotator(){
     items[i].classList.add("on");
   }, 3400);
 }
+/* ===== DesignOS live prototype (embedded on /designos) ===== */
+const PROTO = [
+  {t:"Launch banner for LUMA One", src:"Slack", who:"Marketing", vol:4, skill:"Campaign banner", out:"designer", draft:"banner",
+   trace:[["request","“Launch banner, LUMA One…”"],["pattern.match","Campaign banner","ok"],["memory.load","product truths v14"],["pov.apply","volume 4 · Announce"],["draft.build","3 options · 2 sizes"],["eval.a11y","pass","ok"],["eval.system","pass","ok"],["eval.voice","pass","ok"],["eval.truth","fail","bad"],["fix.applied","$249 → $199","ok"],["eval.recog","0.91 · pass","ok"],["requester","picked option A","ok"],["review","→ designer","ok"]],
+   checks:[["Accessibility","WCAG 2.2 AA contrast and target size"],["System","Current tokens and components only"],["Voice","Plain, confident, easy to read"],["Product truth","Fixed: price updated from $249 to $199"],["Recognition","Scores 0.91 against approved examples"]],
+   status:"Requester picked A. Waiting on a designer to approve."},
+  {t:"Product page for LUMA One", src:"Notion", who:"Product", vol:3, skill:"Product page", out:"ship", draft:"page",
+   trace:[["request","“Product page, LUMA One”"],["pattern.match","Product page","ok"],["memory.load","product truths v14"],["pov.apply","volume 3 · Present"],["draft.build","1 page"],["eval.a11y","pass","ok"],["eval.system","pass","ok"],["eval.truth","pass","ok"],["ship","→ Notion","ok"]],
+   checks:[["Accessibility","WCAG 2.2 AA"],["System","Current tokens and components only"],["Product truth","5 sensors, $199"]],
+   status:"Shipped back to Notion. Volume 3 needs no review."},
+  {t:"Monthly air report email", src:"Claude", who:"Lifecycle", vol:2, skill:"Report email", out:"ship", draft:"email",
+   trace:[["request","“October air report”"],["pattern.match","Report email","ok"],["data.load","home readings, Oct"],["pov.apply","volume 2 · Speak"],["draft.build","1 email"],["eval.a11y","pass","ok"],["eval.voice","pass","ok"],["ship","→ Claude","ok"]],
+   checks:[["Accessibility","Readable at email sizes"],["Voice","Calm, not alarming"]],
+   status:"Shipped. Volume 2 is self-serve."},
+  {t:"A new brand campaign for the Alps", src:"Slack", who:"Brand", vol:null, skill:null, out:"ask", draft:"none",
+   trace:[["request","“Alps campaign, new look”"],["pattern.match","no skill fits","bad"],["route","→ ask a designer","ok"]],
+   checks:[],
+   status:"No skill fits. A designer creates it, then writes a new skill."},
+  {t:"Clean Air Day social post", src:"Slack", who:"Social", vol:3, skill:"Social post", out:"ship", draft:"social",
+   trace:[["request","“Clean Air Day, Sep 7”"],["pattern.match","Social post","ok"],["pov.apply","volume 3 · Present"],["draft.build","1 square post"],["eval.a11y","pass","ok"],["eval.recog","0.88 · pass","ok"],["ship","→ Slack","ok"]],
+   checks:[["Accessibility","Contrast passes on image"],["Recognition","Scores 0.88 against approved examples"]],
+   status:"Shipped back to Slack. Volume 3 needs no review."},
+  {t:"Investor one-pager", src:"Notion", who:"Founders", vol:5, skill:"One-pager", out:"lead", draft:"brief",
+   trace:[["request","“Investor one-pager”"],["pattern.match","One-pager","ok"],["pov.apply","volume 5 · Shout"],["route","designers lead","ok"],["draft.build","brief + outline only"]],
+   checks:[],
+   status:"Volume 5: designers lead. The AI prepared a brief to start from."},
+  {t:"App Store screenshots", src:"Claude", who:"Product", vol:4, skill:"App Store set", out:"designer", draft:"phones",
+   trace:[["request","“App Store screenshots”"],["pattern.match","App Store set","ok"],["pov.apply","volume 4 · Announce"],["draft.build","3 screens"],["eval.a11y","pass","ok"],["eval.system","pass","ok"],["eval.truth","pass","ok"],["review","→ designer","ok"]],
+   checks:[["Accessibility","Text sizes pass on device"],["System","Current tokens and components only"],["Product truth","Score and sensor names match"]],
+   status:"Waiting on a designer to approve. Volume 4 gets a review."},
+  {t:"Weekend sale banner", src:"Slack", who:"Growth", vol:2, skill:"Promo banner", out:"ship", draft:"promo",
+   trace:[["request","“Free shipping this weekend”"],["pattern.match","Promo banner","ok"],["pov.apply","volume 2 · Speak"],["draft.build","1 banner"],["eval.truth","pass","ok"],["ship","→ Slack","ok"]],
+   checks:[["Product truth","$199, free shipping"]],
+   status:"Shipped. Volume 2 is self-serve."}
+];
+const PI = "images/designos/proto/";
+function protoDraft(k){
+  const dots = n => `<span class="pd-dots">${[0,1,2,3,4].map(i=>`<i class="${i<n?"on":""}"></i>`).join("")}</span>`;
+  if (k==="banner") return `<div class="pd-opts">
+      <figure class="pd-a"><img src="${PI}banner-a.jpg" alt="Option A: living room banner"><figcaption class="pd-chip picked">✓ Picked · A</figcaption></figure>
+      <figure><img src="${PI}banner-b.jpg" alt="Option B: reading nook banner"><figcaption class="pd-chip">B</figcaption></figure>
+      <figure><img src="${PI}banner-c.jpg" alt="Option C: kitchen banner"><figcaption class="pd-chip">C</figcaption></figure></div>`;
+  if (k==="page") return `<div class="pd-page"><div class="pd-nav"><b>LUMA</b><span>Shop · Air · Support</span></div><div class="pd-hero"><div><small>LUMA ONE</small><h4>Mountain air, indoors.</h4><p>Five sensors. One quiet glow. $199</p><span class="pd-btn">Buy LUMA One</span></div><img src="${PI}banner-square.jpg" alt=""></div></div>`;
+  if (k==="email") return `<div class="pd-email"><b>LUMA</b><small>YOUR OCTOBER AIR</small><div class="pd-score"><span>94</span>${dots(5)}</div><p>Clean air on 27 of 31 days. The bedroom got stuffy after 11 pm, so try cracking a window before bed.</p></div>`;
+  if (k==="social") return `<div class="pd-social"><b>LUMA</b><span>09.07</span><small>CLEAN AIR DAY · OPEN EVERY WINDOW</small></div>`;
+  if (k==="phones") return `<div class="pd-phones">${[[94,5,"Clean air"],[68,3,"Getting stale"],[31,2,"Open a window"]].map(([s,n,l])=>`<div class="pd-phone"><small>${l}</small><span>${s}</span>${dots(n)}</div>`).join("")}</div>`;
+  if (k==="promo") return `<div class="pd-promo"><b>LUMA</b><h4>Free shipping<br>this weekend.</h4><small>LUMA ONE — $199</small></div>`;
+  if (k==="brief") return `<div class="pd-brief"><small>BRIEF FOR THE DESIGN TEAM</small><ol><li>Audience: seed investors</li><li>Story: problem, product, traction, ask</li><li>Facts: 5 sensors, $199</li><li>Open questions for designers</li></ol></div>`;
+  return `<div class="pd-none">No skill fits this request.<br>DesignOS doesn't guess. It hands new work to a designer.</div>`;
+}
+function protoHTML(){
+  return `<div class="proto" id="proto" aria-label="DesignOS live prototype">
+  <div class="pt-bar"><span class="pt-dots"><i></i><i></i><i></i></span><span>designos v1.0 · luma</span><button type="button" class="pt-replay" data-replay>Replay ↻</button></div>
+  <div class="pt-grid">
+    <div class="pt-col pt-req"><div class="pt-h">Incoming requests</div><ol>${PROTO.map((r,i)=>`<li><button type="button" class="pt-r" data-pr="${i}" aria-pressed="false"><span>${esc(r.t)}</span><small>${r.src} · ${r.vol?"volume "+r.vol:"no skill fits"}</small></button></li>`).join("")}</ol>
+      <p class="pt-note">Requests arrive from Slack, Notion and Claude. No one opens this screen to ask.</p></div>
+    <div class="pt-col pt-draft"><div class="pt-h">Draft</div><div id="pt-main"></div></div>
+    <div class="pt-col pt-trace"><details open id="pt-det"><summary class="pt-h">System trace</summary><ol id="pt-trace"></ol></details></div>
+  </div></div>
+  <p class="pt-cap small">Live prototype. Click any request to see how DesignOS handles it.</p>`;
+}
+let protoTimers = [], protoSeen = false, protoIO = null;
+function protoPlay(i){
+  const root = document.getElementById("proto"); if (!root) return;
+  protoTimers.forEach(clearTimeout); protoTimers = [];
+  const r = PROTO[i], instant = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  root.querySelectorAll(".pt-r").forEach((b,k)=>{ b.classList.toggle("on", k===i); b.setAttribute("aria-pressed", k===i); });
+  const outLabel = {designer:"to a designer", ship:"ships", ask:"ask a designer", lead:"designers lead"}[r.out];
+  const volBars = r.vol ? `<span class="pt-vol">${[1,2,3,4,5].map(v=>`<i class="${v<=r.vol?"on":""}" style="height:${4+v*2}px"></i>`).join("")}</span> ${r.vol}` : "—";
+  document.getElementById("pt-main").innerHTML = `
+    <div class="pt-meta"><span><small>From</small>${r.src} · ${r.who}</span><span><small>Skill</small>${r.skill || "none"}</span><span><small>Volume</small>${volBars}</span><span><small>Route</small>${outLabel}</span></div>
+    <div class="pt-canvas pt-hide">${protoDraft(r.draft)}</div>
+    <ul class="pt-checks">${r.checks.map(c=>`<li class="pt-hide"><span class="pt-ok">✓</span><b>${c[0]}</b><small>${c[1]}</small></li>`).join("")}</ul>
+    <div class="pt-status pt-hide pt-${r.out}">${r.status}</div>`;
+  const tr = document.getElementById("pt-trace");
+  tr.innerHTML = r.trace.map(([k,v,c])=>`<li class="pt-hide"><span>${k}</span><b class="${c||""}">${esc(v)}</b></li>`).join("");
+  const steps = [...tr.children];
+  const canvas = root.querySelector(".pt-canvas"), checks = [...root.querySelectorAll(".pt-checks li")], status = root.querySelector(".pt-status");
+  const show = el => el && el.classList.remove("pt-hide");
+  if (instant) { [...steps, canvas, ...checks, status].forEach(show); return; }
+  let t = 150, ci = 0;
+  steps.forEach(li => {
+    const k = li.firstChild.textContent;
+    protoTimers.push(setTimeout(() => {
+      show(li);
+      if (k === "draft.build" || k === "route" && r.draft === "none") show(canvas);
+      if (k.startsWith("eval.") && k !== "eval.truth" || k === "fix.applied" || (k === "eval.truth" && !r.trace.some(x=>x[0]==="fix.applied"))) show(checks[ci++]);
+    }, t));
+    t += k === "draft.build" ? 700 : 380;
+  });
+  protoTimers.push(setTimeout(() => { checks.forEach(show); show(canvas); show(status); }, t + 200));
+}
+function initProto(){
+  const root = document.getElementById("proto"); if (!root) return;
+  if (protoIO) { protoIO.disconnect(); protoIO = null; }
+  protoSeen = false;
+  if (matchMedia("(max-width:860px)").matches) document.getElementById("pt-det").open = false;
+  root.addEventListener("click", e => {
+    const b = e.target.closest("[data-pr]"); if (b) { protoSeen = true; protoPlay(+b.dataset.pr); return; }
+    if (e.target.closest("[data-replay]")) { const on = root.querySelector(".pt-r.on"); protoPlay(on ? +on.dataset.pr : 0); }
+  });
+  if (!window.IntersectionObserver) { protoPlay(0); return; }
+  protoIO = new IntersectionObserver(es => { if (es.some(x=>x.isIntersecting) && !protoSeen) { protoSeen = true; protoPlay(0); protoIO.disconnect(); } }, { threshold: .35 });
+  protoIO.observe(root);
+}
+
 let current = -1;
 function viewName(){
   const p = location.pathname.replace(/^\/+|\/+$/g, "");
@@ -510,6 +697,7 @@ function route(){
   scrollTo(0,0);
   startRotator();
   animateCounts();
+  initProto();
   const c = document.getElementById("copy");
   if (c) c.onclick = async () => {
     try { await navigator.clipboard.writeText(ME.email); c.textContent = "Copied"; }
